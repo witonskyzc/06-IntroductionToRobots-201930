@@ -24,7 +24,7 @@ class RoseBot(object):
     def __init__(self):
         # Use these instance variables
         self.drive_system = DriveSystem()
-        self.sound_system = SoundSystem()
+        # self.sound_system = SoundSystem()
 
 ###############################################################################
 #    DriveSystem
@@ -44,11 +44,10 @@ class SoundSystem(object):
     Use this object to make   ** any **   sounds.
     """
 
-    def __init__(self, beeper, tone_maker, speech_maker, song_maker):
-        self.beeper = beeper
-        self.tone_maker = tone_maker
-        self.speech_maker = speech_maker
-        self.song_maker = song_maker
+    def __init__(self):
+        self.beeper = Beeper()
+        self.tone_maker = ToneMaker()
+        self.speech_maker = SpeechMaker()
 
 
 ###############################################################################

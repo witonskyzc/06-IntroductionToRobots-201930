@@ -2,11 +2,11 @@
 An opportunity to explore how to make an EV3 Robot move.
 
 Authors: Dave Fisher, David Mutchler, Vibha Alangar,
-their colleagues, and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+their colleagues, and Zach Witonsky.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 # -----------------------------------------------------------------------------
-# TODO: 2.
+# DONE: 2.
 #   Follow along with the lecture to run this program:
 #    - Using SSH from your computer
 #   When you have successfully run this program, change this _TODO_ to DONE.
@@ -20,11 +20,12 @@ def main():
     """ Calls the other functions to test/demo them. """
     print("Running main on the robot.")
 
-    # TODO: 2. Construct a RoseBot.  Send it as an argument to other functions.
-    run_test_spin()
-    run_test_go()
-    challenge1()
-    challenge2()
+    # DONE: 2. Construct a RoseBot.  Send it as an argument to other functions.
+    robot = rb.RoseBot()
+    # run_test_spin(robot)
+    # run_test_go(robot)
+    challenge1(robot)
+    challenge2(robot)
 
 
 def run_test_spin(robot):
@@ -35,14 +36,15 @@ def run_test_spin(robot):
       :type robot:  rb.RoseBot
     """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement this.
+    # DONE: 3. Implement this.
     # -------------------------------------------------------------------------
 
+    spin(robot, 2, 50)
 
 def spin(robot, seconds, speed):
     """ :type robot: rb.RoseBot """
     # -------------------------------------------------------------------------
-    # TODO: 4.
+    # DONE: 4.
     #   Makes the robot move, by using this pattern:
     #    1. Turn on the wheel motors at the given speed but with:
     #        -- LEFT wheel POSITIVE speed
@@ -53,6 +55,13 @@ def spin(robot, seconds, speed):
     # Use the DOT trick to figure out how to turn on and turn off motors.
     # -------------------------------------------------------------------------
 
+    robot.drive_system.left_motor.turn_on(speed)
+    robot.drive_system.right_motor.turn_on(-(speed))
+
+    time.sleep(seconds)
+
+    robot.drive_system.left_motor.turn_off()
+    robot.drive_system.right_motor.turn_off()
 
 def run_test_go(robot):
     """
@@ -62,22 +71,32 @@ def run_test_go(robot):
       :type robot:  rb.RoseBot
     """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement this.
+    # DONE: 3. Implement this.
     # -------------------------------------------------------------------------
 
-
+    go(robot,2,50,100)
 
 def go(robot, seconds, left_wheel_speed, right_wheel_speed):
     """ :type robot: rb.RoseBot """
     # -------------------------------------------------------------------------
-    # TODO: 6.
+    # DONE: 6.
     #   Make the robot go, by using the pattern from SPIN function, except
     #   using the given speeds for the left and right wheels, respectively.
     # -------------------------------------------------------------------------
 
+    robot.drive_system.left_motor.turn_on(left_wheel_speed)
+    robot.drive_system.right_motor.turn_on(right_wheel_speed)
+
+    time.sleep(seconds)
+
+    robot.drive_system.left_motor.turn_off()
+    robot.drive_system.right_motor.turn_off()
 
 def challenge1(robot):
     """ Your instructor will tell you this challenge. """
+
+    go(robot, 2, 50, 100)
+    spin(robot, 2, 50)
 
 
 def challenge2(robot):
